@@ -1,37 +1,27 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { Button } from "@mui/material";
-
+import React from "react";
+import Journey_Table from "./component/Journey_Table";
+import Station_Table from "./component/Station_Table";
+import { Navigate, Route, Routes } from "react-router-dom";
+import StationMap from "./component/map/Station_Map";
+import Template from "./template/Template";
+import { Counter } from "./component/Redux_Test";
+import { TenMp } from "@mui/icons-material";
+import MainPage from "./component/MainPage";
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + + Typescript + MUI 5</h1>
-      <Button color="secondary">Secondary</Button>
-      <Button variant="contained" color="success">
-        Success
-      </Button>
-      <Button variant="outlined" color="error">
-        Error
-      </Button>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+    <Routes>
+      <Route path="/" element={<Template/>}>
+        <Route index element={<MainPage />}></Route>
+        <Route path="/journey" element={<Journey_Table />}></Route>
+        <Route path="/station">
+          <Route index element={<Station_Table />}></Route>
+          <Route path=":stationId" element={<StationMap />}></Route>
+        </Route>
+        <Route path="/counter" element={<Counter />}></Route>
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
