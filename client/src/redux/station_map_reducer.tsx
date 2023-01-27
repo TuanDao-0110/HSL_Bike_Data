@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface StationType {
+export type StationType= {
   [index: string]: string;
   id: string;
   stationID: string;
