@@ -1,51 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { fetchJourneyData, Journey_Type } from "../ultilities/services";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-
-const columns: GridColDef[] = [
-  { field: "id", headerName: "id", width: 90 },
-
-  {
-    field: "departureStationName",
-    headerName: "departure Station Name",
-    width: 250,
-    editable: true,
-  },
-  {
-    field: "returnStationName",
-    headerName: "return Station Name",
-    width: 250,
-    editable: true,
-  },
-  {
-    field: "coveredDistance",
-    headerName: "covered Distance (m)",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "duration",
-    headerName: "duration (s)",
-    width: 150,
-    editable: true,
-  },
-  // {
-  //   field: "fullName",
-  //   headerName: "Full name",
-  //   description: "This column has a value getter and is not sortable.",
-  //   sortable: false,
-  //   width: 160,
-  //   valueGetter: (params: GridValueGetterParams) => `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-  // },
-];
+import { compareAsc, format } from "date-fns";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Journey_Table = () => {
-  const [journey, setJourney] = React.useState<Journey_Type[]>([
+  const [journeys, setJourney] = React.useState<Journey_Type[]>([
     {
       id: 392,
       departureTime: "2021-07-31T23:20:14",
@@ -58,6 +24,7 @@ const Journey_Table = () => {
       duration: "604",
     },
   ]);
+  const { journey: tableJourney_Data } = useSelector((state: RootState) => state.languageSlicer);
   const [page, SetPage] = useState<Number>(0);
   useEffect(() => {
     fetchJourneyData().then((data) => {
@@ -70,18 +37,28 @@ const Journey_Table = () => {
   return (
     <Box sx={{ height: 600, width: "80%", margin: "0 0 10rem" }}>
       <div className="flex justify-center">
-        <h1 className="text-4xl text-center my-5">Table Journey </h1>
+        <h1 className="text-4xl text-center my-5">{tableJourney_Data.header} </h1>
         <FormControl
           sx={{
-            m: 1,
+            m: 2,
             color: "wheat",
+            width: "10rem",
           }}
           variant="standard"
         >
-          <InputLabel id="demo-customized-select-label"> Page number</InputLabel>
+          <InputLabel
+            id="demo-customized-select-label"
+            size="normal"
+            sx={{
+              textAlign: "center",
+              width: "fit-content",
+            }}
+          >
+            {tableJourney_Data.page}
+          </InputLabel>
           <Select
             sx={{
-              color: "wheat",
+              color: "#1C87C9",
             }}
             labelId="demo-customized-select-label"
             id="demo-customized-select"
@@ -106,11 +83,11 @@ const Journey_Table = () => {
 
       <DataGrid
         sx={{
-          color: "#C76E4C",
-          borderColor: "red",
+          color: "#1C87C9",
+          borderColor: "#1C87C9",
         }}
-        rows={journey}
-        columns={columns}
+        rows={journeys}
+        columns={tableJourney_Data.col}
         pageSize={10}
         rowsPerPageOptions={[10]}
         // checkboxSelection

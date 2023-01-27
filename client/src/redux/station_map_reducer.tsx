@@ -34,7 +34,7 @@ const initialState: StationType = {
 };
 
 export const stationMapSlice = createSlice({
-  name: "counter",
+  name: "station",
   initialState,
   reducers: {
     renderMap: (state, action: PayloadAction<StationType>) => {

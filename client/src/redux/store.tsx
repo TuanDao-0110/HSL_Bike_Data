@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counterslice";
 import stationReducer from "./station_map_reducer";
+import languageSlicer from "./langague_reducer";
 export const store = configureStore({
   reducer: {
     stationReducer,
-    counterReducer,
+    languageSlicer,
   },
 });
 

@@ -5,7 +5,6 @@ import Station_Table from "./component/Station_Table";
 import { Navigate, Route, Routes } from "react-router-dom";
 import StationMap from "./component/map/Station_Map";
 import Template from "./template/Template";
-import { Counter } from "./component/Redux_Test";
 import { TenMp } from "@mui/icons-material";
 import MainPage from "./component/MainPage";
 function App() {
@@ -18,7 +17,6 @@ function App() {
           <Route index element={<Station_Table />}></Route>
           <Route path=":stationId" element={<StationMap />}></Route>
         </Route>
-        <Route path="/counter" element={<Counter />}></Route>
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

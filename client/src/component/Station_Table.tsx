@@ -3,53 +3,9 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { StationType, fetchStationData } from "../ultilities/services";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { renderMap } from "../redux/station_map_reducer";
-const columns: GridColDef[] = [
-  { field: "id", headerName: "id", width: 90 },
-  {
-    field: "stationID",
-    headerName: "stationID",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "Nimi",
-    headerName: "Nimi",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "Osoite",
-    headerName: "Address",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "Operaattor",
-    headerName: "Operaattor",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "Kapasiteet",
-    headerName: "Kapasiteet",
-    width: 150,
-    editable: true,
-  },
-  {
-    field: "x",
-    headerName: "x",
-    width: 100,
-    editable: true,
-  },
-  {
-    field: "y",
-    headerName: "y",
-    width: 100,
-    // editable: true,
-  },
-];
+import { RootState } from "../redux/store";
 
 const Station_Table = () => {
   const navigate = useNavigate();
@@ -71,6 +27,8 @@ const Station_Table = () => {
       y: "60.16582",
     },
   ]);
+  const { station: tableStation_Data } = useSelector((state: RootState) => state.languageSlicer);
+
   useEffect(() => {
     fetchStationData().then((data) => {
       setStation((prev) => {
@@ -80,18 +38,16 @@ const Station_Table = () => {
   }, []);
   return (
     <Box sx={{ height: 600, width: "80%", marginBottom: "40px" }}>
-      <h1 className="text-4xl text-center my-5">Table station </h1>
+      <h1 className="text-4xl text-center my-5">{tableStation_Data.header} </h1>
       <DataGrid
         sx={{
-          color: "#C76E4C",
-          borderColor: "red",
+          color: "#1C87C9",
+          borderColor: "#1C87C9",
         }}
         rows={station}
-        columns={columns}
+        columns={tableStation_Data.col}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        // checkboxSelection
-
         disableSelectionOnClick
         onCellClick={(e) => {
           const { stationID } = e.row;

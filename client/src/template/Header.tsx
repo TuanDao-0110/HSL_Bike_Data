@@ -1,21 +1,39 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { Button } from "@mui/material";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import logo from "../assets/logo.png";
 import solitaLogo from "../assets/solita.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setEng, setFin, setSE } from "../redux/langague_reducer";
+import { FI, SE, UK } from "../ultilities/language";
+import { RootState } from "../redux/store";
 const Header = () => {
+  const [language, setLanguage] = useState<String>(UK);
+  const dispatch = useDispatch();
+  const changeLanguage = (value: string): void => {
+    if (value === UK) {
+      dispatch(setEng());
+    }
+    if (value === SE) {
+      dispatch(setSE());
+    }
+    if (value === FI) {
+      dispatch(setFin());
+    }
+  };
+  const { nav } = useSelector((state: RootState) => state.languageSlicer);
   return (
     <div className="">
       <nav className="bg-white shadow-lg">
         <div className="md:flex items-center justify-between py-2 px-8 md:px-12">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-800 md:text-3xl flex justify-center items-center gap-5">
-              <NavLink to={"/"}>
+            <div className=" md:text-3xl flex justify-center items-center gap-5">
+              <Link to={"/"}>
                 <img src={logo} width={80} height={80} alt="" />
-              </NavLink>
-              <NavLink to={"/"}>
+              </Link>
+              <Link to={"/"}>
                 <img src={solitaLogo} width={80} height={80} alt="" />
-              </NavLink>
+              </Link>
             </div>
             <div className="md:hidden">
               <button type="button" className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none">
@@ -29,13 +47,40 @@ const Header = () => {
               </button>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row hidden md:block -mx-2">
+          <div className="flex flex-col md:flex-row hidden md:block -mx-2 justify-center items-center">
             <NavLink to={"journey"}>
-              <Button size="large"> journey</Button>
+              <Button disableElevation disableFocusRipple disableRipple>
+                {" "}
+                {nav?.routerJourney}
+              </Button>
             </NavLink>
             <NavLink to={"station"}>
-              <Button> station</Button>
+              <Button> {nav?.routerStation}</Button>
             </NavLink>
+            <FormControl
+              sx={{
+                m: 1,
+                color: "wheat",
+              }}
+              variant="standard"
+            >
+              <Select
+                sx={{
+                  color: "#1C87C9",
+                }}
+                labelId="demo-customized-select-label"
+                id="demo-customized-select"
+                value={language}
+                onChange={(e) => {
+                  setLanguage(e.target.value);
+                  changeLanguage(e.target.value as string);
+                }}
+              >
+                <MenuItem value={UK}>🇬🇧</MenuItem>
+                <MenuItem value={FI}>🇫🇮</MenuItem>
+                <MenuItem value={SE}>🇸🇪</MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </div>
       </nav>
