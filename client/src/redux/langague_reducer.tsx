@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { state_EN } from "./language/English";
 import { state_FI } from "./language/Finnish";
 import { state_SE } from "./language/Swedish";
-import { Lang_Type } from "./redux_types/langague_types";
+import { Lang_Type } from "../ultilities/types";
 
 const initialState: Lang_Type = {
   ...state_EN,

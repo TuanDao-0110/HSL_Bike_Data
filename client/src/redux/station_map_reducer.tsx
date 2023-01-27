@@ -1,22 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { StationType } from "../ultilities/types";
 
-export type StationType= {
-  [index: string]: string;
-  id: string;
-  stationID: string;
-  Nimi: string;
-  Namn: string;
-  Name: string;
-  Osoite: string;
-  Adress: string;
-  Kaupunki: string;
-  Stad: string;
-  Operaattor: string;
-  Kapasiteet: string;
-  x: string;
-  y: string;
-}
+
 const initialState: StationType = {
   id: "",
   stationID: "",

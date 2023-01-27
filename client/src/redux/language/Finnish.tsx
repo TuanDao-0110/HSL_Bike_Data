@@ -1,6 +1,6 @@
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { format } from "date-fns";
-import { Lang_Type } from "../redux_types/langague_types";
+import { Lang_Type } from "../../ultilities/types";
 const columnsJourney_FI: GridColDef[] = [
   { field: "id", headerName: "Indeksi", width: 90 },
 
@@ -23,17 +23,17 @@ const columnsJourney_FI: GridColDef[] = [
     field: "departureTime",
     headerName: "Lähtöaika",
     width: 200,
-    valueGetter: (params: GridValueGetterParams) => {
-      return format(new Date(params.value), "P p");
-    },
+    // valueGetter: (params: GridValueGetterParams) => {
+    //   return format(new Date(params.value), "P p");
+    // },
   },
   {
     field: "returnTime",
     headerName: "Paluuaika",
     width: 200,
-    valueGetter: (params: GridValueGetterParams) => {
-      return format(new Date(params.value), "P p");
-    },
+    // valueGetter: (params: GridValueGetterParams) => {
+    //   return format(new Date(params.value), "P p");
+    // },
   },
   {
     field: "duration",
@@ -81,9 +81,6 @@ const columnsStation_FI: GridColDef[] = [
   },
 ];
 
-export const map_FI = {
-  header: "Asema",
-};
 export const state_FI: Lang_Type = {
   journey: {
     col: columnsJourney_FI,
@@ -94,11 +91,19 @@ export const state_FI: Lang_Type = {
     col: columnsStation_FI,
     header: "Taulu Asema",
   },
-  map: map_FI,
+  map: {
+    averageArrival: "Keskimääräinen Matkamatka Saapuu Asemalle",
+    averageLeave: "Keskimääräinen Matka Asemalta",
+    header: "Aseman ID",
+    time: "Aika",
+    top5Arrive: "5 Parasta Saapumisasemaa",
+    top5Depart: "5 Parasta Lähtöasemaa",
+    stationName: "Aseman Nimi",
+  },
   main: {
     btnLearnMore: "Lue Lisää",
     btnStart: "Aloita",
-    application: "tietosovellus",
+    application: "Tietosovellus",
     discription:
       "Helsingin kaupunkipyöräsovellus on verkkosovellus, jonka avulla käyttäjät voivat tarkastella tietoja pääkaupunkiseudulla tehdyistä kaupunkipyörämatkoista. Sovellus on suunniteltu Solita Dev Academy Finland 2023 -esitehtävään ja hyödyntää taustapalvelua tietojen hakemiseen kolme matkatietojen tietojoukkoa ja yksi tietojoukko kaupunkipyöräaseman tiedoista.",
     header: "Helsingin ",

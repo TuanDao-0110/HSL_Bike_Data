@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import bg from "../assets/bg.jpeg";
 import { RootState } from "../redux/store";
 const MainPage = () => {
-  const { main } = useSelector((state: RootState) => state.languageSlicer);
+  const { main } = useSelector((state: RootState) => state.language);
   return (
     <div className="w-full">
       <div className="flex bg-white" style={{ height: "100vh" }}>

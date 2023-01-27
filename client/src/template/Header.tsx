@@ -21,7 +21,7 @@ const Header = () => {
       dispatch(setFin());
     }
   };
-  const { nav } = useSelector((state: RootState) => state.languageSlicer);
+  const { nav } = useSelector((state: RootState) => state.language);
   return (
     <div className="">
       <nav className="bg-white shadow-lg">

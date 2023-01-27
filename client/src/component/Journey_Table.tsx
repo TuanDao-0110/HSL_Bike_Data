@@ -1,43 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import { fetchJourneyData, Journey_Type } from "../ultilities/services";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import { compareAsc, format } from "date-fns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-
+import { fetchJourneyDataApi } from "../redux/journey_reducer";
 const Journey_Table = () => {
-  const [journeys, setJourney] = React.useState<Journey_Type[]>([
-    {
-      id: 392,
-      departureTime: "2021-07-31T23:20:14",
-      returnTime: "2021-07-31T23:30:23",
-      departureStationId: "076",
-      departureStationName: "Olympiastadion",
-      returnStationId: "111",
-      returnStationName: "Esterinportti",
-      coveredDistance: "1676",
-      duration: "604",
-    },
-  ]);
-  const { journey: tableJourney_Data } = useSelector((state: RootState) => state.languageSlicer);
+  const journeyData = useSelector((state: RootState) => state.journeys);
+  const { journey: tableJourneyLanguage } = useSelector((state: RootState) => state.language);
   const [page, SetPage] = useState<Number>(0);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchJourneyData().then((data) => {
-      let newData: Journey_Type[] = setUpID(data);
-      setJourney((prev) => {
-        return newData;
-      });
-    });
+    dispatch(fetchJourneyDataApi(0));
   }, []);
   return (
     <Box sx={{ height: 600, width: "80%", margin: "0 0 10rem" }}>
       <div className="flex justify-center">
-        <h1 className="text-4xl text-center my-5">{tableJourney_Data.header} </h1>
+        <h1 className="text-4xl text-center my-5">{tableJourneyLanguage.header} </h1>
         <FormControl
           sx={{
             m: 2,
@@ -54,7 +37,7 @@ const Journey_Table = () => {
               width: "fit-content",
             }}
           >
-            {tableJourney_Data.page}
+            {tableJourneyLanguage.page}
           </InputLabel>
           <Select
             sx={{
@@ -65,12 +48,7 @@ const Journey_Table = () => {
             value={page}
             onChange={(e) => {
               SetPage(e.target.value as Number);
-              fetchJourneyData(e.target.value as Number).then((data) => {
-                let newData: Journey_Type[] = setUpID(data);
-                setJourney((prev) => {
-                  return newData;
-                });
-              });
+              dispatch(fetchJourneyDataApi(e.target.value as Number));
             }}
           >
             <MenuItem value={0}>0</MenuItem>
@@ -86,8 +64,8 @@ const Journey_Table = () => {
           color: "#1C87C9",
           borderColor: "#1C87C9",
         }}
-        rows={journeys}
-        columns={tableJourney_Data.col}
+        rows={journeyData}
+        columns={tableJourneyLanguage.col}
         pageSize={10}
         rowsPerPageOptions={[10]}
         // checkboxSelection
@@ -99,11 +77,3 @@ const Journey_Table = () => {
 };
 
 export default Journey_Table;
-const setUpID = (arg: Journey_Type[]): Journey_Type[] => {
-  let newArg: Journey_Type[] = [];
-  for (let i = 0; i < arg.length; i++) {
-    arg[i].id = i + 1;
-    newArg.push(arg[i]);
-  }
-  return newArg;
-};

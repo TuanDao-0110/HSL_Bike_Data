@@ -1,6 +1,6 @@
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { format } from "date-fns";
-import { Lang_Type } from "../redux_types/langague_types";
+import { Lang_Type } from "../../ultilities/types";
 
 const columnsJourney_SE: GridColDef[] = [
   { field: "id", headerName: "Index", width: 90 },
@@ -25,17 +25,17 @@ const columnsJourney_SE: GridColDef[] = [
     field: "departureTime",
     headerName: "Avgångstid",
     width: 200,
-    valueGetter: (params: GridValueGetterParams) => {
-      return format(new Date(params.value), "P p");
-    },
+    // valueGetter: (params: GridValueGetterParams) => {
+    //   return format(new Date(params.value), "P p");
+    // },
   },
   {
     field: "returnTime",
     headerName: "Retur Tid",
     width: 200,
-    valueGetter: (params: GridValueGetterParams) => {
-      return format(new Date(params.value), "P p");
-    },
+    // valueGetter: (params: GridValueGetterParams) => {
+    //   return format(new Date(params.value), "P p");
+    // },
   },
   {
     field: "duration",
@@ -83,9 +83,7 @@ const columnsStation_SE: GridColDef[] = [
   },
 ];
 
-const map_SE = {
-  header: "station",
-};
+
 
 export const state_SE: Lang_Type = {
   journey: {
@@ -97,7 +95,15 @@ export const state_SE: Lang_Type = {
     col: columnsStation_SE,
     header: "Tabell Station",
   },
-  map: map_SE,
+  map: {
+    averageArrival: "Genomsnittlig Avståndsresa Anländer Till Stationen",
+    averageLeave: "Genomsnittlig Avståndsresa Från Station",
+    header: "Stations ID",
+    time: "Tid",
+    top5Arrive: "Topp 5 Ankomststationer",
+    top5Depart: "Topp 5 Avgångsstationer",
+    stationName: "Stations namn",
+  },
   main: {
     btnLearnMore: "Läs Mer",
     btnStart: "Start",
