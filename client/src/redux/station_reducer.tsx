@@ -3,28 +3,11 @@ import axios from "axios";
 import { BASE_URL } from "../ultilities/Sources";
 import { StationType } from "../ultilities/types";
 
-
-const initialState: StationType[] = [
-  {
-    id: "1",
-    stationID: "501",
-    Nimi: "Hanasaari",
-    Namn: "Hanaholmen",
-    Name: "Hanasaari",
-    Osoite: "Hanasaarenranta 1",
-    Adress: "Hanaholmsstranden 1",
-    Kaupunki: "Espoo",
-    Stad: "Esbo",
-    Operaattor: "CityBike Finland",
-    Kapasiteet: "10",
-    x: "24.840319",
-    y: "60.16582",
-  },
-];
+const initialState: StationType[] = [];
 
 export const fetchStationDataAPI = createAsyncThunk("get/station", async (): Promise<StationType[]> => {
   try {
-    const { data, status } = await axios({
+    const { data } = await axios({
       method: "GET",
       url: BASE_URL + "station",
     });
@@ -41,17 +24,11 @@ export const stationSlicer = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder
-    //   .addCase(fetchStationDataAPI.pending, (state, action) => {
-    //   })
-      .addCase(fetchStationDataAPI.fulfilled, (state, { payload }) => {
-
-        return (state = payload);
-      });
+    builder.addCase(fetchStationDataAPI.fulfilled, (state, action) => {
+      const { meta, payload } = action;
+      return (state = payload);
+    });
   },
 });
-
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = stationSlicer.actions;
 
 export default stationSlicer.reducer;

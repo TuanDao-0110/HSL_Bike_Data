@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import stationReducer from "./station_map_reducer";
 import languageReducer from "./langague_reducer";
 import journey_reducer from "./journey_reducer";
 import station_reducer from "./station_reducer";
-import logger from "redux-logger";
+import set_row_reducers from "./set_row_reducers";
 
 export const store = configureStore({
   reducer: {
@@ -11,11 +12,10 @@ export const store = configureStore({
     language: languageReducer,
     journeys: journey_reducer,
     stations: station_reducer,
+    setRow: set_row_reducers,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

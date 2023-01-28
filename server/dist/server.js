@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = require("body-parser");
 const dbConnect_1 = require("./config/dbConnect");
-require("dotenv").config();
-const station_1 = require("./router/station");
 const journey_1 = require("./router/journey");
+const station_1 = require("./router/station");
 const cors_1 = __importDefault(require("cors"));
-const port = 8000;
+require("dotenv").config();
+const PORT = process.env.PORT || 8000;
 const app = (0, express_1.default)();
 (0, dbConnect_1.connectToDatabase)()
     .then(() => {
@@ -18,13 +18,10 @@ const app = (0, express_1.default)();
     app.use((0, body_parser_1.json)());
     app.use(station_1.stationRouter);
     app.use(journey_1.journeyRouter);
-    app.listen(port, () => {
-        console.log(`listening on port ${port}....`);
-    });
+    app.listen(PORT, () => { });
     app.all("*", (req, res) => {
         res.status(404);
         if (req.accepts("html")) {
-            // return res.sendFile(path.join(__dirname, "views", "404.html"));
             return res.json({ msg: "fail" });
         }
         else if (req.accepts("json")) {
@@ -36,6 +33,5 @@ const app = (0, express_1.default)();
     });
 })
     .catch((error) => {
-    console.error("Database connection failed", error);
     process.exit();
 });

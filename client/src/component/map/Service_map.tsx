@@ -96,6 +96,5 @@ export const top5ArrivalStation = (stationId: string, journeyData: Journey_Type[
       listTop5Station[index].count++;
     }
   }
-  console.log(listTop5Station);
   return listTop5Station.sort((a, b) => b.count - a.count).slice(0, 5);
 };

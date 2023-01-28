@@ -1,24 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../ultilities/Sources";
 import { Journey_Type } from "../ultilities/types";
-
-
-
-const initialState: Journey_Type[] = [
-  {
-    id: 392,
-    departureTime: "2021-07-31T23:20:14",
-    returnTime: "2021-07-31T23:30:23",
-    departureStationId: "076",
-    departureStationName: "Olympiastadion",
-    returnStationId: "111",
-    returnStationName: "Esterinportti",
-    coveredDistance: "1676",
-    duration: "604",
-  },
-];
+type JourneyType = {
+  journeyArr: Journey_Type[];
+  requestStatus: string;
+};
+const initialState: JourneyType = {
+  journeyArr: [],
+  requestStatus: "",
+};
 const setUpID = (arg: Journey_Type[]): Journey_Type[] => {
   let newArg: Journey_Type[] = [];
   for (let i = 0; i < arg.length; i++) {
@@ -28,7 +19,7 @@ const setUpID = (arg: Journey_Type[]): Journey_Type[] => {
   return newArg;
 };
 
-export const fetchJourneyDataApi = createAsyncThunk("get/journey", async (page?: Number): Promise<Journey_Type[]> => {
+export const fetchJourneyDataApi = createAsyncThunk("get/journey", async (page?: number | string): Promise<Journey_Type[]> => {
   try {
     const { data, status } = await axios({
       method: "GET",
@@ -48,15 +39,14 @@ export const journeySlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchJourneyDataApi.pending, (state, action) => {})
+      .addCase(fetchJourneyDataApi.pending, (state, action) => {
+        const { meta } = action;
+        return { ...state, requestStatus: meta.requestStatus };
+      })
       .addCase(fetchJourneyDataApi.fulfilled, (state, action) => {
-        return (state = setUpID(action.payload));
-        // return (state = action.payload);
+        return { ...state, journeyArr: setUpID(action.payload), requestStatus: action.meta.requestStatus };
       });
   },
 });
-
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = journeySlice.actions;
 
 export default journeySlice.reducer;

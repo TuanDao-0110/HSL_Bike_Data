@@ -4,22 +4,26 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { renderMap } from "../redux/station_map_reducer";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import { fetchStationDataAPI } from "../redux/station_reducer";
 import { createNextState } from "@reduxjs/toolkit";
+import Loading from "./Loading";
 
 const Station_Table = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { station: tableStation_Data } = useSelector((state: RootState) => state.language);
   const stations = useSelector((state: RootState) => state.stations);
+
   useEffect(() => {
     dispatch(fetchStationDataAPI());
   }, []);
-  return (
-    <Box sx={{ height: 600, width: "80%", marginBottom: "40px" }}>
-      <h1 className="text-4xl text-center my-5">{tableStation_Data.header} </h1>
+  const render = () => {
+    if (stations.length ===0) {
+      return <Loading />;
+    }
+    return (
       <DataGrid
         sx={{
           color: "#1C87C9",
@@ -37,8 +41,14 @@ const Station_Table = () => {
         }}
         experimentalFeatures={{ newEditingApi: true }}
       />
+    );
+  };
+  return (
+    <Box sx={{ height: 600, width: "80%", margin: "0 0 10rem" }}>
+      <h1 className="text-4xl text-center my-5">{tableStation_Data.header} </h1>
+      {render()}
     </Box>
   );
 };
 
-export default Station_Table;
+export default  Station_Table;

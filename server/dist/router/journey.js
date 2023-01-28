@@ -15,15 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.journeyRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const dbConnect_1 = require("../config/dbConnect");
-const filePath = "../../importdata/journey/time_table_0.json";
 const router = express_1.default.Router();
 exports.journeyRouter = router;
 router.get("/api/journey", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b;
     try {
         const { page } = req.query;
-        const result = yield ((_a = dbConnect_1.collections === null || dbConnect_1.collections === void 0 ? void 0 : dbConnect_1.collections.journey) === null || _a === void 0 ? void 0 : _a.find({}).limit(400).skip(Number(page) * 400).toArray());
-        res.status(200).json({ result, msg: "ok" });
+        if (Number(page) !== 0) {
+            const result = yield ((_a = dbConnect_1.collections === null || dbConnect_1.collections === void 0 ? void 0 : dbConnect_1.collections.journey) === null || _a === void 0 ? void 0 : _a.find({}).limit(Number(page)).toArray());
+            res.status(200).json({ result, msg: "ok" });
+        }
+        else {
+            console.log("get all");
+            const result = yield ((_b = dbConnect_1.collections === null || dbConnect_1.collections === void 0 ? void 0 : dbConnect_1.collections.journey) === null || _b === void 0 ? void 0 : _b.find().toArray());
+            res.status(200).json({ result, msg: "ok" });
+        }
     }
     catch (error) {
         console.error(error);

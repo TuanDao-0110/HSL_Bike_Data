@@ -2,7 +2,11 @@ import { CircularProgress } from "@mui/material";
 import React from "react";
 
 const Loading = () => {
-  return <CircularProgress color="info" />;
+  return (
+    <div className="flex justify-center items-center">
+      <CircularProgress color="info" />
+    </div>
+  );
 };
 
 export default Loading;

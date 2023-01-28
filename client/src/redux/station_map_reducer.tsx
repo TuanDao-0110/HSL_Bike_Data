@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { StationType } from "../ultilities/types";
 
-
 const initialState: StationType = {
   id: "",
   stationID: "",
@@ -18,7 +17,6 @@ const initialState: StationType = {
   x: "24.840319",
   y: "60.16582",
 };
-
 export const stationMapSlice = createSlice({
   name: "station",
   initialState,
@@ -29,7 +27,5 @@ export const stationMapSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions,
 export const { renderMap } = stationMapSlice.actions;
 export default stationMapSlice.reducer;

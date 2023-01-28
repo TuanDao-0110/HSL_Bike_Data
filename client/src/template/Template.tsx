@@ -7,16 +7,13 @@ import Header from "./Header";
 
 const Template = () => {
   return (
-    <>
+    <div className="h-full">
       <Header />
       <div className="flex justify-center flex-wrap">
-        {/* <MainPage /> */}
-        {/* <Journey_Table /> */}
         <Outlet />
-        {/* <City_Table /> */}
       </div>
-      {/* <Footer /> */}
-    </>
+      <Footer />
+    </div>
   );
 };
 

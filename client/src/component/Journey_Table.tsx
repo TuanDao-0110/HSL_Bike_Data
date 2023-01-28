@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
@@ -6,17 +6,43 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import { fetchJourneyDataApi } from "../redux/journey_reducer";
+import Loading from "./Loading";
+import { setRows } from "../redux/set_row_reducers";
 const Journey_Table = () => {
   const journeyData = useSelector((state: RootState) => state.journeys);
+  const { journeyArr, requestStatus } = journeyData;
   const { journey: tableJourneyLanguage } = useSelector((state: RootState) => state.language);
-  const [page, SetPage] = useState<Number>(0);
-  const dispatch = useDispatch();
-
+  const rowAmount = useSelector((state: RootState) => state.setRow);
+  // const [page, SetPage] = useState<Number>(10);
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchJourneyDataApi(0));
+    if (journeyArr.length === 0) {
+      dispatch(fetchJourneyDataApi(1000));
+    }
   }, []);
+
+  const render = () => {
+    if (requestStatus === "pending") {
+      return <Loading />;
+    }
+    return (
+      <DataGrid
+        sx={{
+          color: "#1C87C9",
+          borderColor: "#1C87C9",
+        }}
+        rows={journeyArr}
+        columns={tableJourneyLanguage.col}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        disableSelectionOnClick
+        experimentalFeatures={{ newEditingApi: true }}
+      />
+    );
+  };
+
   return (
     <Box sx={{ height: 600, width: "80%", margin: "0 0 10rem" }}>
       <div className="flex justify-center">
@@ -45,35 +71,25 @@ const Journey_Table = () => {
             }}
             labelId="demo-customized-select-label"
             id="demo-customized-select"
-            value={page}
+            value={rowAmount}
             onChange={(e) => {
-              SetPage(e.target.value as Number);
-              dispatch(fetchJourneyDataApi(e.target.value as Number));
+              dispatch(setRows(e.target.value));
+              dispatch(fetchJourneyDataApi(e.target.value));
             }}
           >
-            <MenuItem value={0}>0</MenuItem>
-            <MenuItem value={1}>1</MenuItem>
-            <MenuItem value={2}>2</MenuItem>
-            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={"0"}>all</MenuItem>
+            <MenuItem value={"10"}>10</MenuItem>
+            <MenuItem value={"100"}>100</MenuItem>
+            <MenuItem value={"1000"}>1000</MenuItem>
+            <MenuItem value={"10000"}>10000</MenuItem>
+            <MenuItem value={"100000"}>100000</MenuItem>
           </Select>
         </FormControl>
       </div>
-
-      <DataGrid
-        sx={{
-          color: "#1C87C9",
-          borderColor: "#1C87C9",
-        }}
-        rows={journeyData}
-        columns={tableJourneyLanguage.col}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        // checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      />
+      {render()}
     </Box>
   );
 };
 
+// export default Journey_Table;
 export default Journey_Table;

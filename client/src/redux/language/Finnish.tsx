@@ -23,17 +23,17 @@ const columnsJourney_FI: GridColDef[] = [
     field: "departureTime",
     headerName: "Lähtöaika",
     width: 200,
-    // valueGetter: (params: GridValueGetterParams) => {
-    //   return format(new Date(params.value), "P p");
-    // },
+    valueGetter: (params: GridValueGetterParams) => {
+      return format(new Date(params.value), "P p");
+    },
   },
   {
     field: "returnTime",
     headerName: "Paluuaika",
     width: 200,
-    // valueGetter: (params: GridValueGetterParams) => {
-    //   return format(new Date(params.value), "P p");
-    // },
+    valueGetter: (params: GridValueGetterParams) => {
+      return format(new Date(params.value), "P p");
+    },
   },
   {
     field: "duration",
@@ -47,17 +47,17 @@ const columnsStation_FI: GridColDef[] = [
   {
     field: "stationID",
     headerName: "Aseman ID",
-    width: 150,
+    width: 100,
   },
   {
     field: "Nimi",
     headerName: "Nimi",
-    width: 150,
+    width: 250,
   },
   {
     field: "Osoite",
     headerName: "Osoite",
-    width: 150,
+    width: 250,
   },
   {
     field: "Operaattor",
@@ -85,7 +85,7 @@ export const state_FI: Lang_Type = {
   journey: {
     col: columnsJourney_FI,
     header: "Taulu Matka",
-    page: "Sivunumero",
+    page: "Rivin Numero",
   },
   station: {
     col: columnsStation_FI,

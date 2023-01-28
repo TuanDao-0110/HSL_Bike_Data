@@ -15,7 +15,8 @@ import { Top5Type } from "../../ultilities/types";
 
 const StationMap = () => {
   const station = useSelector((state: RootState) => state.stationMap);
-  const journeyData = useSelector((state: RootState) => state.journeys);
+  const { journeyArr } = useSelector((state: RootState) => state.journeys);
+
   const stationData = useSelector((state: RootState) => state.stations);
   const language = useSelector((state: RootState) => state.language.map);
   const { x: lng, y: lat, Kaupunki, Adress, Nimi, stationID } = station;
@@ -26,7 +27,7 @@ const StationMap = () => {
 
   const renderTop5ArrivalStation = () => {
     return showTop5Arrival ? (
-      top5ArrivalStation(stationID, journeyData, stationData)?.map((item, index) => {
+      top5ArrivalStation(stationID, journeyArr, stationData)?.map((item, index) => {
         const { details } = item;
         return (
           <Marker
@@ -49,7 +50,7 @@ const StationMap = () => {
   };
   const renderTop5DepartStation = () => {
     return showTop5Leaving ? (
-      top5DepartureStation(stationID, journeyData, stationData)?.map((item, index) => {
+      top5DepartureStation(stationID, journeyArr, stationData)?.map((item, index) => {
         const { details } = item;
         return (
           <Marker
@@ -93,7 +94,7 @@ const StationMap = () => {
     );
   };
   const renderDistance = (distance: string | number, show: boolean): ReactElement => {
-    return <h1 className={`${show ? "opacity-1" : "opacity-0"}`}>{distance} m</h1>;
+    return <h1 className={`${show ? "opacity-1" : "opacity-0"}`}>{distance === "NaN" ? "No distance" : distance} m</h1>;
   };
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: API,
@@ -102,7 +103,7 @@ const StationMap = () => {
     return <Loading />;
   } else {
     return (
-      <div className="text-center mt-10 gap-4 flex  flex-col justify-center items-center">
+      <div className="text-center my-20 gap-4 flex  flex-col justify-center items-center">
         <h1 className="text-2xl">
           {Kaupunki} - {Adress} - {language.header}: {stationID}
         </h1>
@@ -131,7 +132,7 @@ const StationMap = () => {
               }
               label={`${language.top5Arrive}`}
             />
-            {renderTable(top5ArrivalStation(stationID, journeyData, stationData), showTop5Arrival)}
+            {renderTable(top5ArrivalStation(stationID, journeyArr, stationData), showTop5Arrival)}
             <FormControlLabel
               control={
                 <Switch
@@ -143,7 +144,7 @@ const StationMap = () => {
               }
               label={`${language.top5Depart}`}
             />
-            {renderTable(top5DepartureStation(stationID, journeyData, stationData), showTop5Leaving)}
+            {renderTable(top5DepartureStation(stationID, journeyArr, stationData), showTop5Leaving)}
             <FormControlLabel
               control={
                 <Switch
@@ -154,7 +155,7 @@ const StationMap = () => {
               }
               label={`${language.averageLeave}`}
             />
-            {renderDistance(averageStartFromStation(stationID, journeyData), showLeavingDistance)}
+            {renderDistance(averageStartFromStation(stationID, journeyArr), showLeavingDistance)}
             <FormControlLabel
               control={
                 <Switch
@@ -165,10 +166,9 @@ const StationMap = () => {
               }
               label={language.averageArrival}
             />
-            {renderDistance(averageEndAtStation(stationID, journeyData), showArrivalDistance)}
+            {renderDistance(averageEndAtStation(stationID, journeyArr), showArrivalDistance)}
           </FormGroup>
         </div>
-        <div className="flex border-spacing-2 border-cyan-300"></div>
       </div>
     );
   }

@@ -35,20 +35,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectToDatabase = exports.collections = void 0;
 const mongoDB = __importStar(require("mongodb"));
 const dotenv = __importStar(require("dotenv"));
+require("dotenv").config();
 exports.collections = {};
 function connectToDatabase() {
     return __awaiter(this, void 0, void 0, function* () {
         dotenv.config();
-        const client = new mongoDB.MongoClient("mongodb+srv://tuan:1234@cluster0.j8wwzkf.mongodb.net/?retryWrites=true&w=majority");
+        const client = new mongoDB.MongoClient(`mongodb+srv://tuan:1234@cluster0.j8wwzkf.mongodb.net/?retryWrites=true&w=majority`);
         yield client.connect();
         const db = client.db("Bike");
-        const gamesCollection = db.collection("games");
         const stationCollection = db.collection("stations");
         const journeyCollection = db.collection("journey");
-        exports.collections.games = gamesCollection;
         exports.collections.station = stationCollection;
         exports.collections.journey = journeyCollection;
-        console.log(`Successfully connected to database: ${db.databaseName} and collection: ${gamesCollection.collectionName}`);
     });
 }
 exports.connectToDatabase = connectToDatabase;

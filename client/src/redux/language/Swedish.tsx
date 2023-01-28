@@ -25,17 +25,17 @@ const columnsJourney_SE: GridColDef[] = [
     field: "departureTime",
     headerName: "Avgångstid",
     width: 200,
-    // valueGetter: (params: GridValueGetterParams) => {
-    //   return format(new Date(params.value), "P p");
-    // },
+    valueGetter: (params: GridValueGetterParams) => {
+      return format(new Date(params.value), "P p");
+    },
   },
   {
     field: "returnTime",
     headerName: "Retur Tid",
     width: 200,
-    // valueGetter: (params: GridValueGetterParams) => {
-    //   return format(new Date(params.value), "P p");
-    // },
+    valueGetter: (params: GridValueGetterParams) => {
+      return format(new Date(params.value), "P p");
+    },
   },
   {
     field: "duration",
@@ -49,17 +49,17 @@ const columnsStation_SE: GridColDef[] = [
   {
     field: "stationID",
     headerName: "Station ID",
-    width: 150,
+    width: 100,
   },
   {
     field: "Namn",
     headerName: "Name",
-    width: 150,
+    width: 250,
   },
   {
     field: "Adress",
     headerName: "Adress",
-    width: 150,
+    width: 250,
   },
   {
     field: "Operaattor",
@@ -83,13 +83,11 @@ const columnsStation_SE: GridColDef[] = [
   },
 ];
 
-
-
 export const state_SE: Lang_Type = {
   journey: {
     col: columnsJourney_SE,
     header: "Tabell Resa",
-    page: "Sidonummer",
+    page: "Antal Rader",
   },
   station: {
     col: columnsStation_SE,

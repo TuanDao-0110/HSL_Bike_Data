@@ -24,15 +24,17 @@ const columnsJourney_EN: GridColDef[] = [
     field: "departureTime",
     headerName: "Departure Time",
     width: 200,
-    // valueGetter: (params: GridValueGetterParams) => params,
+    valueGetter: (params: GridValueGetterParams) => {
+      return `${format(new Date(params.value), "P p")}`;
+    },
   },
   {
     field: "returnTime",
     headerName: "Return Time",
     width: 200,
-    // valueGetter: (params: GridValueGetterParams) => {
-    //   return `${format(new Date(params.value), "P p")}`;
-    // },
+    valueGetter: (params: GridValueGetterParams) => {
+      return `${format(new Date(params.value), "P p")}`;
+    },
   },
   {
     field: "duration",
@@ -46,17 +48,17 @@ const columnsStation_EN: GridColDef[] = [
   {
     field: "stationID",
     headerName: "Station ID",
-    width: 150,
+    width: 100,
   },
   {
     field: "Nimi",
     headerName: "Name",
-    width: 150,
+    width: 250,
   },
   {
     field: "Osoite",
     headerName: "Address",
-    width: 150,
+    width: 250,
   },
   {
     field: "Operaattor",
@@ -84,7 +86,7 @@ export const state_EN: Lang_Type = {
   journey: {
     col: columnsJourney_EN,
     header: "Table Journey",
-    page: "Page Number",
+    page: "Number of Row",
   },
   station: {
     col: columnsStation_EN,
@@ -95,8 +97,8 @@ export const state_EN: Lang_Type = {
     averageLeave: "Average Distance Travel from Station ",
     header: "Station ID",
     time: "Time",
-    top5Arrive: "Top 5 Arrive Stations",
-    top5Depart: "Top 5 Departure Stations",
+    top5Arrive: "Top 5 Arrive From Stations",
+    top5Depart: "Top 5 Departure To Stations",
     stationName: "station Name",
   },
   main: {
