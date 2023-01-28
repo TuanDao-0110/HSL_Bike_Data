@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../ultilities/Sources";
 import { StationType } from "../ultilities/types";
-
 const initialState: StationType[] = [];
 
 export const fetchStationDataAPI = createAsyncThunk("get/station", async (): Promise<StationType[]> => {
