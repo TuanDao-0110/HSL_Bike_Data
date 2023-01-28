@@ -4,19 +4,18 @@ import { connectToDatabase } from "./config/dbConnect";
 import { journeyRouter } from "./router/journey";
 import { stationRouter } from "./router/station";
 import cors from "cors";
-
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
-
 const app = express();
-
 connectToDatabase()
   .then(() => {
     app.use(cors());
     app.use(json());
     app.use(stationRouter);
     app.use(journeyRouter);
-    app.listen(PORT, () => {});
+    app.listen(PORT, () => {
+      console.log(`listening at ${PORT}....`);
+    });
     app.all("*", (req, res) => {
       res.status(404);
       if (req.accepts("html")) {

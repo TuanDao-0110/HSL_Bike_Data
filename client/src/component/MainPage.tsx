@@ -32,7 +32,6 @@ const MainPage = () => {
             className="h-full object-cover"
             style={{
               backgroundImage:
-                // "url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80)",
                 `url(${bg})`,
             }}
           >

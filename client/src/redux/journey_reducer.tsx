@@ -21,7 +21,7 @@ const setUpID = (arg: Journey_Type[]): Journey_Type[] => {
 
 export const fetchJourneyDataApi = createAsyncThunk("get/journey", async (page?: number | string): Promise<Journey_Type[]> => {
   try {
-    const { data, status } = await axios({
+    const { data } = await axios({
       method: "GET",
       url: BASE_URL + "journey" + `?page=${page}`,
     });

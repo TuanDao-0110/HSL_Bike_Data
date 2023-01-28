@@ -1,7 +1,6 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { API } from "../../ultilities/Sources";
-import { useSelect } from "@mui/base";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import Loading from "../Loading";
@@ -10,7 +9,6 @@ import Switch from "@mui/material/Switch";
 
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Scale } from "@mui/icons-material";
 import { Top5Type } from "../../ultilities/types";
 
 const StationMap = () => {
@@ -19,7 +17,7 @@ const StationMap = () => {
 
   const stationData = useSelector((state: RootState) => state.stations);
   const language = useSelector((state: RootState) => state.language.map);
-  const { x: lng, y: lat, Kaupunki, Adress, Nimi, stationID } = station;
+  const { x: lng, y: lat, Kaupunki, Adress, stationID } = station;
   const [showLeavingDistance, setShowLeavingDistance] = useState<boolean>(false);
   const [showArrivalDistance, setShowArrivalDistance] = useState<boolean>(false);
   const [showTop5Leaving, setShowtop5Leaving] = useState<boolean>(false);

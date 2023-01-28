@@ -1,10 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import MainPage from "../component/MainPage";
-
 import Footer from "./Footer";
 import Header from "./Header";
-
 const Template = () => {
   return (
     <div className="h-full">

@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
 import stationReducer from "./station_map_reducer";
 import languageReducer from "./langague_reducer";
 import journey_reducer from "./journey_reducer";
@@ -14,7 +13,6 @@ export const store = configureStore({
     stations: station_reducer,
     setRow: set_row_reducers,
   },
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

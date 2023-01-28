@@ -1,4 +1,3 @@
-import { RedoOutlined } from "@mui/icons-material";
 import { Journey_Type, StationType, Top5Type } from "../../ultilities/types";
 
 export const averageStartFromStation = (stationId: string, journeyData: Journey_Type[]): string => {

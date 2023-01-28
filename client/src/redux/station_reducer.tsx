@@ -25,7 +25,7 @@ export const stationSlicer = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchStationDataAPI.fulfilled, (state, action) => {
-      const { meta, payload } = action;
+      const { payload } = action;
       return (state = payload);
     });
   },

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { state_EN } from "./language/English";
 import { state_FI } from "./language/Finnish";
 import { state_SE } from "./language/Swedish";
@@ -13,13 +12,13 @@ export const languageSlicer = createSlice({
   name: "language",
   initialState,
   reducers: {
-    setEng: (state) => {
+    setEng: () => {
       return { ...state_EN };
     },
-    setFin: (state) => {
+    setFin: () => {
       return { ...state_FI };
     },
-    setSE: (state) => {
+    setSE: () => {
       return { ...state_SE };
     },
   },

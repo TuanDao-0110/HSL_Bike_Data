@@ -18,7 +18,9 @@ const app = (0, express_1.default)();
     app.use((0, body_parser_1.json)());
     app.use(station_1.stationRouter);
     app.use(journey_1.journeyRouter);
-    app.listen(PORT, () => { });
+    app.listen(PORT, () => {
+        console.log(`listening at ${PORT}....`);
+    });
     app.all("*", (req, res) => {
         res.status(404);
         if (req.accepts("html")) {

@@ -26,13 +26,11 @@ router.get("/api/journey", (req, res) => __awaiter(void 0, void 0, void 0, funct
             res.status(200).json({ result, msg: "ok" });
         }
         else {
-            console.log("get all");
             const result = yield ((_b = dbConnect_1.collections === null || dbConnect_1.collections === void 0 ? void 0 : dbConnect_1.collections.journey) === null || _b === void 0 ? void 0 : _b.find().toArray());
             res.status(200).json({ result, msg: "ok" });
         }
     }
     catch (error) {
-        console.error(error);
         res.status(400).send(error);
     }
 }));

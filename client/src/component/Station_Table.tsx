@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import React, { useEffect } from "react";
+import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { renderMap } from "../redux/station_map_reducer";
 import { AppDispatch, RootState } from "../redux/store";
 import { fetchStationDataAPI } from "../redux/station_reducer";
-import { createNextState } from "@reduxjs/toolkit";
 import Loading from "./Loading";
 
 const Station_Table = () => {
@@ -20,7 +19,7 @@ const Station_Table = () => {
     dispatch(fetchStationDataAPI());
   }, []);
   const render = () => {
-    if (stations.length ===0) {
+    if (stations.length === 0) {
       return <Loading />;
     }
     return (
@@ -51,4 +50,4 @@ const Station_Table = () => {
   );
 };
 
-export default  Station_Table;
+export default Station_Table;
