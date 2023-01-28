@@ -1,13 +1,17 @@
 # Introduction
 
 This is the pre-assignment for Solita Dev Academy Finland 2023. The project is to create a UI and a backend service for displaying data from journeys made with city bikes in the Helsinki Capital area.
+# Deployment: 
+
+https://bike-app-2pf8.onrender.com/
+
 
 # Data
 For the exercise, three datasets of journey data were downloaded. The data is owned by City Bike Finland.
 
-. https://dev.hsl.fi/citybikes/od-trips-2021/2021-05.csv
-. https://dev.hsl.fi/citybikes/od-trips-2021/2021-06.csv
-. https://dev.hsl.fi/citybikes/od-trips-2021/2021-07.csv
+1. https://dev.hsl.fi/citybikes/od-trips-2021/2021-05.csv
+2. https://dev.hsl.fi/citybikes/od-trips-2021/2021-06.csv
+3. https://dev.hsl.fi/citybikes/od-trips-2021/2021-07.csv
 
 Additionally, a dataset with information about Helsinki Region Transport’s (HSL) city bicycle stations was also downloaded.
 
@@ -34,9 +38,49 @@ The following features have been implemented:
 cd Bike_APP 
 ```
 
-2. Running
+2. Install npm package in Bike_App folder
+```
+npm install
+```
 
+3. Install npm package in client
+
+```
+cd client vs npm install
+```
+4. Install npm package in server
+```
+cd server vs npm install
+```
+5. Run both client and server at Bike_App
 ```
 npm run dev
 ```
+# Teachnology: 
 
+1. Front end
+    <p>Vite React TS</p>
+    <p>Store: Redux Tool Kit (RTK) </p>
+    <p>Map Render: Google Map API</p>
+    <p>UI: Tailwindcss, Material UI </p>
+2. Back end:
+    <p>Express TS</p>
+3. DataBase:
+    <p>Mongo DB</p>
+
+# User Story for Bike_App: 
+1. [x] Create front end fetching station and journey data from backend. 
+2. [x] Render each station location with map render.
+3. [x] Show top 5 departure and arrival stations, average leaving and arrive distance.
+4. [x] Languages set up include: English, Finnish, Swedish. 
+5. [x] Limmit fetching journey data from back end. 
+6. [x] Sorting/Filter on journey's and station's table.
+7. [ ] Posting new journey/station data. 
+8. [x] Create Backend Get journey/station data
+9. [x] Post new station data 
+10. [ ] Post new journey data
+
+
+# Web Interface: 
+
+1. Font Page:

@@ -85,7 +85,7 @@ export const state_FI: Lang_Type = {
   journey: {
     col: columnsJourney_FI,
     header: "Taulu Matka",
-    page: "Rivin Numero",
+    page: "Rivien Määrä",
   },
   station: {
     col: columnsStation_FI,

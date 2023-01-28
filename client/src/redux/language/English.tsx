@@ -86,7 +86,7 @@ export const state_EN: Lang_Type = {
   journey: {
     col: columnsJourney_EN,
     header: "Table Journey",
-    page: "Number of Row",
+    page: "Number of Rows",
   },
   station: {
     col: columnsStation_EN,
