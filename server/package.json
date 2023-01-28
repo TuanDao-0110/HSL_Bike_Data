@@ -7,7 +7,7 @@
     "prestart": "npm run build",
     "start": "ts-node-dev src/server.ts",
     "preserve": "npm run build",
-    "server": "concurrently \"npx tsc -w\" \"nodemon dist/server.js\" "
+    "server": "concurrently \"npx tsc -w\" \"node dist/server.js\" "
   },
   "keywords": [],
   "author": "",
