@@ -84,3 +84,24 @@ npm run dev
 # Web Interface: 
 
 1. Font Page:
+<img width="1436" alt="Screenshot 2023-01-28 at 17 31 15" src="https://user-images.githubusercontent.com/75282610/215275071-cce81db2-75c2-4100-99b0-0c48115b1edc.png">
+2. Fetching Journey Table:
+<img width="1432" alt="Screenshot 2023-01-28 at 17 31 47" src="https://user-images.githubusercontent.com/75282610/215275102-c507ff80-cec8-400d-9552-a89a772fd0da.png">
+3. Fetching amount of row: 
+<img width="1423" alt="Screenshot 2023-01-28 at 17 32 23" src="https://user-images.githubusercontent.com/75282610/215275127-bb286c30-476b-417b-be12-0703be5538df.png">
+4. Station Table:
+<img width="1418" alt="Screenshot 2023-01-28 at 17 32 52" src="https://user-images.githubusercontent.com/75282610/215275154-ebee6000-5022-4179-889a-b68d3bef6476.png">
+5. Render Station Location:
+<img width="1076" alt="Screenshot 2023-01-28 at 17 34 23" src="https://user-images.githubusercontent.com/75282610/215275233-4c8f6604-f9ab-471a-979e-c6e119bd57d1.png">
+6. Render and analysis Station Data:
+![Screenshot 2023-01-28 at 17 35 03](https://user-images.githubusercontent.com/75282610/215275270-f8bde418-3229-4837-830d-248316d20c67.png)
+7. Filter/Sorting Data: 
+![Screenshot 2023-01-28 at 17 35 53](https://user-images.githubusercontent.com/75282610/215275325-37ba50f5-824b-4206-9306-016b3280f038.png)
+8. Language Selection:
+![Screenshot 2023-01-28 at 17 36 23](https://user-images.githubusercontent.com/75282610/215275360-aa11daa5-f04f-4583-b548-0adfa25edcd0.png)
+
+# Waring: 
+
+1. Please consider when select fletching all data, it may web server broken.
+2. In case webserver broken, please wait 15s-30s before go to website again. 
+
