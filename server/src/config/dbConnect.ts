@@ -1,22 +1,21 @@
 import * as mongoDB from "mongodb";
 import * as dotenv from "dotenv";
+import { URL } from "url";
 require("dotenv").config();
 export const collections: { games?: mongoDB.Collection; station?: mongoDB.Collection; journey?: mongoDB.Collection } = {};
 
 export async function connectToDatabase() {
   dotenv.config();
 
-  const client: mongoDB.MongoClient = new mongoDB.MongoClient(`mongodb+srv://tuan:1234@cluster0.j8wwzkf.mongodb.net/?retryWrites=true&w=majority`);
+  const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.MONGODB_API);
 
   await client.connect();
 
-  const db: mongoDB.Db = client.db("Bike");
+  const db: mongoDB.Db = client.db(process.env.DB_NAME);
 
   const stationCollection: mongoDB.Collection = db.collection("stations");
   const journeyCollection: mongoDB.Collection = db.collection("journey");
 
   collections.station = stationCollection;
   collections.journey = journeyCollection;
-
-  
 }

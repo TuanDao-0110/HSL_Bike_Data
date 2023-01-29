@@ -40,9 +40,9 @@ exports.collections = {};
 function connectToDatabase() {
     return __awaiter(this, void 0, void 0, function* () {
         dotenv.config();
-        const client = new mongoDB.MongoClient(`mongodb+srv://tuan:1234@cluster0.j8wwzkf.mongodb.net/?retryWrites=true&w=majority`);
+        const client = new mongoDB.MongoClient(process.env.MONGODB_API);
         yield client.connect();
-        const db = client.db("Bike");
+        const db = client.db(process.env.DB_NAME);
         const stationCollection = db.collection("stations");
         const journeyCollection = db.collection("journey");
         exports.collections.station = stationCollection;
