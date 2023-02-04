@@ -17,7 +17,8 @@ const express_1 = __importDefault(require("express"));
 const dbConnect_1 = require("../config/dbConnect");
 const router = express_1.default.Router();
 exports.journeyRouter = router;
-router.get("/api/journey", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router
+    .get("/api/journey", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
         const { page } = req.query;

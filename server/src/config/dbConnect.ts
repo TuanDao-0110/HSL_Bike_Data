@@ -2,7 +2,7 @@ import * as mongoDB from "mongodb";
 import * as dotenv from "dotenv";
 import { URL } from "url";
 require("dotenv").config();
-export const collections: { games?: mongoDB.Collection; station?: mongoDB.Collection; journey?: mongoDB.Collection } = {};
+export const collections: { station?: mongoDB.Collection; journey?: mongoDB.Collection } = {};
 
 export async function connectToDatabase() {
   dotenv.config();
@@ -18,4 +18,5 @@ export async function connectToDatabase() {
 
   collections.station = stationCollection;
   collections.journey = journeyCollection;
+
 }

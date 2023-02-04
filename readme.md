@@ -67,7 +67,8 @@ npm run dev
     <p>Express TS</p>
 3. DataBase:
     <p>Mongo DB</p>
-
+4. Unit Testing: 
+    <p> Jest </p>
 # User Story for Bike_App: 
 1. [x] Create front end fetching station and journey data from backend. 
 2. [x] Render each station location with map render.
@@ -114,6 +115,22 @@ npm run dev
 8. Language Selection:
 
 ![Screenshot 2023-01-28 at 17 36 23](https://user-images.githubusercontent.com/75282610/215275360-aa11daa5-f04f-4583-b548-0adfa25edcd0.png)
+
+# Testing:
+
+1. The tests have been written using the Jest testing framework. The tests cover the following scenarios:
+
+`averageStartFromStation`
+. It should return "No Data" if there are no journeys starting from the specified station.
+. It should return the correct average even if journeys have different covered distances.
+`averageEndAtStation`
+. It should return the average distance covered by journeys ending at a given station.
+. It should return "No Data" if no journeys end at the given station.
+
+`checkValidateData`
+. Departure and return times must be parseable DateTime strings.
+. The arrival time must not happen before the departure time.
+. Departure station ID, return station ID, and trip duration must be positive integers.
 
 # Warning: 
 
