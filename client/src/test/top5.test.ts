@@ -1,5 +1,5 @@
 import { checkValidateData } from "../component/map/Service_map";
-import { Journey_Type, Lang_Type, StationType, Top5Type } from "../ultilities/types";
+  import { describe, test, expect, it } from "vitest";
 
 describe("reject a journey where departure time is not a parseable DateTime", () => {
   it("should reject a journey with unparseable departure and arrival times", () => {
@@ -125,3 +125,5 @@ describe("reject if a departure station id is not a positive integer (and the sa
     expect(result).toEqual([]);
   });
 });
+
+

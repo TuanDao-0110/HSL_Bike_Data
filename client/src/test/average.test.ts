@@ -1,5 +1,7 @@
 import { averageEndAtStation, averageStartFromStation } from "../component/map/Service_map";
 import { Journey_Type } from "../ultilities/types";
+  import { describe, test, expect ,it} from "vitest";
+
 describe("averageStartFromStation", () => {
   it("should return No Data if there are no journeys starting from the specified station", () => {
     const stationId = "3";
