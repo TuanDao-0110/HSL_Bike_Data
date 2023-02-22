@@ -68,6 +68,7 @@ const Header = () => {
                 sx={{
                   color: "#1C87C9",
                 }}
+                data-testid="language-dropdown"
                 labelId="demo-customized-select-label"
                 id="demo-customized-select"
                 value={language}

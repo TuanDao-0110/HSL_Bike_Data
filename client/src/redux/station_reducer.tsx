@@ -8,7 +8,7 @@ export const fetchStationDataAPI = createAsyncThunk("get/station", async (): Pro
   try {
     const { data } = await axios({
       method: "GET",
-      url: BASE_URL + "station",
+      url:   "/api/station",
     });
     return data.result;
   } catch (error) {

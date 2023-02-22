@@ -118,16 +118,20 @@ npm run dev
 
 # Testing:
 
-1. The tests have been written using the Jest testing framework. The tests cover the following scenarios:
+The tests have been written using the Jest testing framework. The tests cover the following scenarios:
 
-`averageStartFromStation`
+1. `averageStartFromStation`
+
 . It should return "No Data" if there are no journeys starting from the specified station.
 . It should return the correct average even if journeys have different covered distances.
-`averageEndAtStation`
+
+2. `averageEndAtStation`
+
 . It should return the average distance covered by journeys ending at a given station.
 . It should return "No Data" if no journeys end at the given station.
 
-`checkValidateData`
+3. `checkValidateData`
+
 . Departure and return times must be parseable DateTime strings.
 . The arrival time must not happen before the departure time.
 . Departure station ID, return station ID, and trip duration must be positive integers.

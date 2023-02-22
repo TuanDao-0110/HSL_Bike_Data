@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "happy-dom",
-    setupFiles: ["/src/test/average.test.ts", "/src/test/top5.test.ts"],
+    // setupFiles: ["/src/test/average.test.ts", "/src/test/top5.test.ts"],
     // setupFiles: ["src/setupTest.ts"],
   },
 });
