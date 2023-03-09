@@ -1,6 +1,5 @@
 # Introduction
-
-This is the pre-assignment for Solita Dev Academy Finland 2023. The project is to create a UI and a backend service for displaying data from journeys made with city bikes in the Helsinki Capital area.
+The project is to create a UI and a backend service for displaying data from journeys made with city bikes which operated by HSL bike render system in the Helsinki Capital area.
 # Deployment: 
 
 https://bike-app-2pf8.onrender.com/
